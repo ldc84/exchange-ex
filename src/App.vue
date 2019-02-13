@@ -8,14 +8,14 @@
             <div class="layout-nav">
               <MenuItem name="1">
                 <router-link to="/">
-                  <Icon type="ios-navigate"></Icon>
+                  <Icon type="ios-home"></Icon>
                   Home
                 </router-link>
               </MenuItem>
               <MenuItem name="2">
-                <router-link to="/about">
-                  <Icon type="ios-keypad"></Icon>
-                  Item 1
+                <router-link to="/coinList">
+                  <Icon type="logo-bitcoin"></Icon>
+                  Coins
                 </router-link>
               </MenuItem>
               <MenuItem name="3">
@@ -50,7 +50,16 @@ export default {
   
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+* {
+  padding:0;
+  margin:0;
+}
+ul,
+ol,
+li {
+  list-style:none;
+}
 #app {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
