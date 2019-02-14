@@ -1,12 +1,12 @@
 <template>
   <div class="about">
     <h1>Coin List</h1>
-    <Spin fix v-if="coins.length <= 0">
+    <Spin fix v-if="$store.state.coins.length <= 0">
       <Icon type="ios-loading" size=50 class="demo-spin-icon-load"></Icon>
       <div>Loading...</div>
     </Spin>
     <ul class="coin-list">
-      <li v-for="(coin, key) in coins" :key="key">
+      <li v-for="(coin, key) in $store.state.coins" :key="key">
         <strong>{{ coin }}</strong>
       </li>
     </ul>
@@ -14,31 +14,18 @@
 </template>
 
 <script>
-import url from '^@/config';
+import { mapActions } from 'vuex';
 export default {
   data(){
     return {
-      coins: [],
+      
     }
   },
   created(){
-    this.coinListGet();
+    this.coinSorting();
   },
   methods: {
-    coinListGet() {
-      let list = [];
-      fetch(url+'/v2/beta/common/currencies')
-        .then(function(response) {
-          return response.json()
-        }).then(function(json) {
-          list = json.data.reduce((key, val)=> {          
-            return list.push(val.display_name);
-          }, [])
-        }).catch(function(ex) {
-          console.log('parsing failed', ex)
-        })
-      this.coins = list;
-    }
+    ...mapActions(['coinSorting'])
   }
 }
 </script>
