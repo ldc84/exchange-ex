@@ -1,13 +1,13 @@
 <template>
   <div class="about">
     <h1>Coin List</h1>
-    <Spin fix v-if="$store.state.coins.length <= 0">
+    <Spin fix v-if="$store.getters.coins.length <= 0">
       <Icon type="ios-loading" size=50 class="demo-spin-icon-load"></Icon>
       <div>Loading...</div>
     </Spin>
     <ul class="coin-list">
-      <li v-for="(coin, key) in $store.state.coins" :key="key">
-        <strong>{{ coin }}</strong>
+      <li v-for="(coin, key) in $store.getters.coins" :key="key">
+        <strong>{{ coin.display_name }}</strong>
       </li>
     </ul>
   </div>
@@ -22,10 +22,10 @@ export default {
     }
   },
   created(){
-    this.coinSorting();
+    this.getCoinList();
   },
   methods: {
-    ...mapActions(['coinSorting'])
+    ...mapActions(['getCoinList'])
   }
 }
 </script>
