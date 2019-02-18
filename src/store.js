@@ -33,7 +33,7 @@ export default new Vuex.Store({
       state.coins = coinList;
     },
     SYMBOLS_LIST(state, symbols) {
-      state.coins = symbols;
+      state.symbols = symbols;
     }
   }
 })
