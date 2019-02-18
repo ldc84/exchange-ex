@@ -32,12 +32,11 @@ export default {
 
 <style lang="scss" scoped>
   .coin-list {
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    grid-column-gap:10px;
+    grid-row-gap:10px;
     > li {
-      width:19%;
-      margin:.5%;
       padding:5px;
       color:#fff;
       background-color:#808695;

@@ -1,6 +1,6 @@
 import { Comm } from './Modules';
 
-const errorChx = (res) => {
+const errorChx = res => {
   if(res.status !== 'ok' || !res.hasOwnProperty('data')) {
     throw new Error(res);
   }
