@@ -1,19 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <Button type="primary">Primary</Button>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{ $store.state.symbols }}
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { mapActions } from 'vuex';
 
 export default {
   name: 'home',
-  components: {
-    HelloWorld
+  created(){
+    this.getSymbols();
+  },
+  methods: {
+    ...mapActions(['getSymbols'])
   }
 }
 </script>

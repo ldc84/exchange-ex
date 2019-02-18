@@ -11,3 +11,9 @@ export const getCoinList = (params) =>
     errorChx (response);
     return response.data;
   });
+
+export const getSymbols = (params) =>
+  Comm('/v2/beta/common/symbols')(params).then((response) => {
+    errorChx (response);
+    return response.data;
+  });
