@@ -40,7 +40,7 @@
             </div>
           </Card>
         </Content>
-        <Footer class="layout-footer-center">&copy; 2019 chundro, Inc.</Footer>
+        <Footer class="layout-footer-center">&copy; 2019 Chundro, Inc.</Footer>
       </Layout>
     </div>
   </div>

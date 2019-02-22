@@ -7,11 +7,19 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     coins: [],
-    symbols: []
+    symbols: {
+      USDT:[],
+      BTC:[],
+      ETH:[],
+      KRW:[]
+    }
   },
   getters: {
     coins(state) {
       return state.coins;
+    },
+    symbols(state) {
+      return state.symbols;
     }
   },
   actions: {
@@ -33,7 +41,23 @@ export default new Vuex.Store({
       state.coins = coinList;
     },
     SYMBOLS_LIST(state, symbols) {
-      state.symbols = symbols;
+      for(let i=0; i<=symbols.length-1; i++){
+        const nameSection = symbols[i].display_name.split('/');
+        switch (nameSection[1]) {
+          case 'USDT':
+            state.symbols.USDT.push(symbols[i]);
+            break;
+          case 'BTC':
+            state.symbols.BTC.push(symbols[i]);
+            break;
+          case 'ETH':
+            state.symbols.ETH.push(symbols[i]);
+            break;
+          case 'KRW':
+            state.symbols.KRW.push(symbols[i]);
+            break;
+        }
+      }
     }
   }
 })
