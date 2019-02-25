@@ -42,8 +42,8 @@ export default new Vuex.Store({
     },
     SYMBOLS_LIST(state, symbols) {
       for(let i=0; i<=symbols.length-1; i++){
-        const nameSection = symbols[i].display_name.split('/');
-        switch (nameSection[1]) {
+        const nameSection = symbols[i].quote_currency.toUpperCase();
+        switch (nameSection) {
           case 'USDT':
             state.symbols.USDT.push(symbols[i]);
             break;

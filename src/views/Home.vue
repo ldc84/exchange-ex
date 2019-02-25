@@ -7,43 +7,16 @@
         <div>Loading...</div>
       </Spin>
       <Tabs @on-click="tabAction">
-        <TabPane label="USDT" :class="{'active': tabNum == 0}">
+        <TabPane v-for="(markets, index, key) in $store.getters.symbols" :label="index" :class="{'active': tabNum == key}" :key="key">
           <ul>
-            <li v-for="(coin, key) in $store.getters.symbols.USDT" :key="key">
+            <li v-for="(coin, key) in markets" :key="key">
               <p>
                 {{ coin.base_currency }}
               </p>
             </li>
           </ul>
         </TabPane>
-        <TabPane label="BTC" :class="{'active': tabNum == 1}">
-          <ul>
-            <li v-for="(coin, key) in $store.getters.symbols.BTC" :key="key">
-              <p>
-                {{ coin.base_currency }}
-              </p>
-            </li>
-          </ul>
-        </TabPane>
-        <TabPane label="ETH" :class="{'active': tabNum == 2}">
-          <ul>
-            <li v-for="(coin, key) in $store.getters.symbols.ETH" :key="key">
-              <p>
-                {{ coin.base_currency }}
-              </p>
-            </li>
-          </ul>
-        </TabPane>
-        <TabPane label="KRW" :class="{'active': tabNum == 3}">
-          <ul>
-            <li v-for="(coin, key) in $store.getters.symbols.KRW" :key="key">
-              <p>
-                {{ coin.base_currency }}
-              </p>
-            </li>
-          </ul>
-        </TabPane>
-      </Tabs>        
+      </Tabs>
     </div>
   </div>
 </template>
