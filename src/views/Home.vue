@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="market">
-      <h2>Market</h2>
+      <h2>Markets</h2>
       <Spin fix v-if="$store.getters.symbols.KRW <= 0">
         <Icon type="ios-loading" size=50 class="demo-spin-icon-load"></Icon>
         <div>Loading...</div>

@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     coins: [],
+    // TODO: 수정할거임
     symbols: {
       USDT:[],
       BTC:[],
@@ -42,7 +43,14 @@ export default new Vuex.Store({
       state.coins = coinList;
     },
     SYMBOLS_LIST(state, symbols) {
-      for(let i=0; i<=symbols.length-1; i++){
+      // for문 돌릴때 length를 캐싱
+      // 1. const leng = symbols.length-1
+      // 2. let i=symbols.length-1; i >= 0; i--
+      // const baseCoins = new Set();  // Symbols도 쓰면 좋음
+      // TODO: 수정할거임
+      // ...Object.assign = object 를 하나로 하기 좋음
+      const symbolsLeng = symbols.length-1;
+      for(let i=0; i<=symbolsLeng; i++){
         const nameSection = symbols[i].quote_currency.toUpperCase();
         switch (nameSection) {
           case 'USDT':

@@ -1,14 +1,18 @@
 const path = require('path');
-function resolve (dir) {
-  return path.join(__dirname, dir)
-}
-module.exports = {
-  baseUrl: process.env.NODE_ENV === 'production' ? '/exchange-ex/' : '/',
-  lintOnSave: true,
-  chainWebpack: (config)=>{
-    config.resolve.alias
-      .set('@', resolve('src'))
-      .set('^@',resolve('src/common'))
-      .set('~@',resolve('src/components'))
-  }
-}
+const JsConfig = require('./jsconfig.json');
+
+const vueConfig = {
+  configureWebpack: {
+    resolve: {
+      alias: (function(config = {}) {
+        const paths = {};
+        for (let dirname in config) {
+          paths[dirname.replace('/*', '')] = path.resolve(config[dirname][0].replace('*', ''));
+        }
+        return paths;
+      })(JsConfig.compilerOptions.paths),
+    },
+  },
+};
+
+module.exports = vueConfig;
