@@ -11,7 +11,8 @@ export default new Vuex.Store({
       USDT:[],
       BTC:[],
       ETH:[],
-      KRW:[]
+      KRW:[],
+      HT:[],
     }
   },
   getters: {
@@ -55,6 +56,9 @@ export default new Vuex.Store({
             break;
           case 'KRW':
             state.symbols.KRW.push(symbols[i]);
+            break;
+          case 'HT':
+            state.symbols.HT.push(symbols[i]);
             break;
         }
       }
