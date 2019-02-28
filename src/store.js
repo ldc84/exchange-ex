@@ -8,13 +8,7 @@ export default new Vuex.Store({
   state: {
     coins: [],
     // TODO: 수정할거임
-    symbols: {
-      USDT:[],
-      BTC:[],
-      ETH:[],
-      KRW:[],
-      HT:[],
-    }
+    symbols: {}
   },
   getters: {
     coins(state) {
@@ -49,27 +43,38 @@ export default new Vuex.Store({
       // const baseCoins = new Set();  // Symbols도 쓰면 좋음
       // TODO: 수정할거임
       // ...Object.assign = object 를 하나로 하기 좋음
-      const symbolsLeng = symbols.length-1;
-      for(let i=0; i<=symbolsLeng; i++){
-        const nameSection = symbols[i].quote_currency.toUpperCase();
-        switch (nameSection) {
-          case 'USDT':
-            state.symbols.USDT.push(symbols[i]);
-            break;
-          case 'BTC':
-            state.symbols.BTC.push(symbols[i]);
-            break;
-          case 'ETH':
-            state.symbols.ETH.push(symbols[i]);
-            break;
-          case 'KRW':
-            state.symbols.KRW.push(symbols[i]);
-            break;
-          case 'HT':
-            state.symbols.HT.push(symbols[i]);
-            break;
+
+      const results = symbols.reduce((prev, curr, index) => {
+        if(!prev.hasOwnProperty(curr.quote_currency)) {
+          prev[curr.quote_currency] = [];
         }
-      }
+        prev[curr.quote_currency].push(curr);
+        return prev;
+      }, {});
+
+      state.symbols = results;
+
+      // const symbolsLeng = symbols.length-1;
+      // for(let i=0; i<=symbolsLeng; i++){
+      //   const nameSection = symbols[i].quote_currency.toUpperCase();
+      //   switch (nameSection) {
+      //     case 'USDT':
+      //       state.symbols.USDT.push(symbols[i]);
+      //       break;
+      //     case 'BTC':
+      //       state.symbols.BTC.push(symbols[i]);
+      //       break;
+      //     case 'ETH':
+      //       state.symbols.ETH.push(symbols[i]);
+      //       break;
+      //     case 'KRW':
+      //       state.symbols.KRW.push(symbols[i]);
+      //       break;
+      //     case 'HT':
+      //       state.symbols.HT.push(symbols[i]);
+      //       break;
+      //   }
+      // }
     }
   }
 })

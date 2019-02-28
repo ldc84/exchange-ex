@@ -1,20 +1,41 @@
 <template>
-  <div class="home">
-    <MarketList />
+  <div class="market">
+    <h2>Markets</h2>
+    <Spin fix v-if="$store.getters.symbols.KRW <= 0">
+      <Icon type="ios-loading" size=50 class="demo-spin-icon-load"></Icon>
+      <div>Loading...</div>
+    </Spin>
+    <Tabs @on-click="tabAction">
+      <TabPane v-for="(markets, index, key) in $store.getters.symbols" :label="index.toUpperCase()" :class="{'active': tabNum == key}" :key="key">
+        <ul>
+          <li v-for="(coin, key) in markets" :key="key">
+            <p>
+              {{ coin.base_currency }}
+            </p>
+          </li>
+        </ul>
+      </TabPane>
+    </Tabs>
   </div>
 </template>
 
 <script>
-import MarketList from '~@/MarketList';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
     return {
-      
+      tabNum:0
     }
   },
-  components: {
-    MarketList
+  created() {
+    this.getSymbols();
+  },
+  methods: {
+    tabAction(name){
+      this.tabNum = name;
+    },
+    ...mapActions(['getSymbols'])
   }
 }
 </script>
