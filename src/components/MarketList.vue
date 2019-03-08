@@ -12,6 +12,9 @@
             <p>
               {{ coin.base_currency }}
             </p>
+            <p>
+              {{ tickers(coin.symbol_code) }}
+            </p>
           </li>
         </ul>
       </TabPane>
@@ -30,6 +33,11 @@ export default {
   },
   created() {
     this.getSymbols();
+  },
+  computed: {
+    tickers(coin) {
+      return (coin) => this.$store.getters.tickers[coin];
+    }
   },
   methods: {
     tabAction(name){

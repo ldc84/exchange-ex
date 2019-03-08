@@ -8,8 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     coins: [],
-    // TODO: 수정할거임
-    symbols: {}
+    symbols: {},
+    tickers: []
   },
   getters: {
     coins(state) {
@@ -17,6 +17,9 @@ export default new Vuex.Store({
     },
     symbols(state) {
       return state.symbols;
+    },
+    tickers(state) {
+      return state.tickers || {...Constant.DEFAULT_TICKER};
     }
   },
   actions: {
@@ -31,6 +34,9 @@ export default new Vuex.Store({
         .then(symbols => {
           context.commit(Constant.MARKET_LIST, symbols);
         })
+    },
+    getTickerSocket(context, data = []){
+      context.commit(Constant.TICKERS.ON_SOCKET_STREAM, data);
     }
   },
   mutations: {
@@ -53,7 +59,13 @@ export default new Vuex.Store({
       }, {});
 
       state.symbols = results;
-
+    },
+    [Constant.TICKERS.ON_SOCKET_STREAM]: (state, data) => {
+      const mappedData = data.reduce((prev, curr) => {
+        prev[curr.symbol] = curr;
+        return prev;
+      }, {});
+      state.tickers = mappedData;
     }
   }
 })

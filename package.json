@@ -8,10 +8,12 @@
   },
   "dependencies": {
     "iview": "^3.2.2",
+    "pako": "^1.0.10",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.0.0",
+    "ws": "^6.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",

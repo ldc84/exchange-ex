@@ -11,7 +11,7 @@ const Module = ({ url }) => (endpoint) => (params) => {
 }
 
 const Comm = Module({
-  url: API_URL,
+  url: API_URL.HUOBI,
 })
 
 export { Comm, Module }
