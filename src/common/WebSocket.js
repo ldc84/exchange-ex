@@ -1,4 +1,4 @@
-import { API_URL } from '^@/Config';
+import { API_URL } from '@/common/Config';
 import Store from '@/store';
 import Pako from 'pako';
 
