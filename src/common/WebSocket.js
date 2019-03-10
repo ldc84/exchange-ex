@@ -25,7 +25,7 @@ export default (function huobiWs() {
       });
     };
 
-    return {
+    return { 
       ...ws,
       attachOnMessage,
       removeMessageHandler,
