@@ -60,12 +60,12 @@ export default new Vuex.Store({
 
       state.symbols = results;
     },
-    [Constant.TICKERS.ON_SOCKET_STREAM]: (state, data) => {
+    [Constant.TICKERS.ON_SOCKET_STREAM]: (state, data = []) => {
       const mappedData = data.reduce((prev, curr) => {
         prev[curr.symbol] = curr;
         return prev;
       }, {});
-      state.tickers = mappedData;
+      state.tickers = { ...state.tickers, ...mappedData };
     }
   }
 })

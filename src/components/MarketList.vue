@@ -13,7 +13,7 @@
               {{ coin.base_currency }}
             </p>
             <p>
-              {{ tickers(coin.symbol_code) }}
+              {{ tickers(coin.symbol_code).close }}
             </p>
           </li>
         </ul>
@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     tickers(coin) {
-      return (coin) => this.$store.getters.tickers[coin];
+      return coin => this.$store.getters.tickers[coin] ? this.$store.getters.tickers[coin] : { close: '-' } ;
     }
   },
   methods: {
