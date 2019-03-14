@@ -7,16 +7,16 @@
     </Spin>
     <Tabs @on-click="tabAction">
       <TabPane v-for="(markets, index, key) in $store.getters.symbols" :label="index.toUpperCase()" :class="{'active': tabNum == key}" :key="key">
-        <ul>
-          <li v-for="(coin, key) in markets" :key="key">
-            <p>
+        <div class="market-list">
+          <div v-for="(coin, key) in markets" :key="key">
+            <p class="coin">
               {{ coin.base_currency }}
             </p>
-            <p>
+            <p class="close">
               {{ tickers(coin.symbol_code).close }}
             </p>
-          </li>
-        </ul>
+          </div>
+        </div>
       </TabPane>
     </Tabs>
   </div>
@@ -54,12 +54,15 @@ export default {
       margin-bottom:5px;
       font-weight:700;
     }
-    ul {
+    .market-list {
       height:300px;
       border:1px solid #d1d1d1;
       overflow-x:hidden;
       overflow-y:auto;
-      > li {
+      > div {
+        display:flex;
+        justify-content: space-between;
+        width:100%;
         padding:5px;
         opacity:0;
         transform:rotateX(-120deg);
@@ -76,8 +79,8 @@ export default {
       }
     }
     .ivu-tabs-tabpane.active {
-      ul {
-        li {
+      .market-list {
+        > div {
           transform:rotateX(0);
           opacity:1;
         }
