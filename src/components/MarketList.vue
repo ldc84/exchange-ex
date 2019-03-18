@@ -12,11 +12,8 @@
             <p class="coin">
               {{ coin.base_currency }}
             </p>
-            <p class="precision">
-              {{ pricePrecision(coin.trade_price_precision) }}
-            </p>
             <p class="close">
-              {{ tickers(coin.symbol_code).close }}
+              {{ pricePrecision(tickers(coin.symbol_code).close, coin.trade_price_precision) }}
             </p>
           </div>
         </div>
@@ -38,17 +35,15 @@ export default {
   created() {
     this.getSymbols();
   },
-  computed: {
-    tickers(coin) {
-      return coin => this.$store.getters.tickers[coin] ? this.$store.getters.tickers[coin] : { close: '-' } ;
-    },
-    pricePrecision(price) {
-      return price => new Decimal(price).toFixed(2, Decimal.ROUND_DOWN);
-    }
-  },
   methods: {
     tabAction(name){
       this.tabNum = name;
+    },
+    tickers(coin) {
+      return this.$store.getters.tickers[coin] || { close: '-' } ;
+    },
+    pricePrecision(price, precision) {
+      return (isNaN(Number(price))) ? '-' : new Decimal(price).toFixed(precision) ;
     },
     ...mapActions(['getSymbols'])
   }
