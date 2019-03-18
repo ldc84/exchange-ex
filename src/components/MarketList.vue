@@ -12,6 +12,9 @@
             <p class="coin">
               {{ coin.base_currency }}
             </p>
+            <p class="precision">
+              {{ pricePrecision(coin.trade_price_precision) }}
+            </p>
             <p class="close">
               {{ tickers(coin.symbol_code).close }}
             </p>
@@ -24,6 +27,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+import { Decimal } from 'decimal.js';
 
 export default {
   data() {
@@ -37,6 +41,9 @@ export default {
   computed: {
     tickers(coin) {
       return coin => this.$store.getters.tickers[coin] ? this.$store.getters.tickers[coin] : { close: '-' } ;
+    },
+    pricePrecision(price) {
+      return price => new Decimal(price).toFixed(2, Decimal.ROUND_DOWN);
     }
   },
   methods: {
@@ -71,7 +78,13 @@ export default {
           &:nth-child(#{$i + 1}) { transition-delay:0.05s * $i; }
         }
         p {
+          width:33.3%;
+          padding:0 10px;
           text-transform:uppercase;
+          &.precision,
+          &.close {
+            text-align:right;
+          }
         }
         &:nth-child(even) {
           background-color:#f1f1f1;
