@@ -3,7 +3,7 @@
     <div class="layout">
       <Layout>
         <Header>
-          <Menu mode="horizontal" theme="dark" active-name="1">
+          <Menu mode="horizontal" active-name="1">
             <div class="layout-logo"></div>
             <div class="layout-nav">
               <MenuItem name="1">
@@ -19,12 +19,10 @@
                 </router-link>
               </MenuItem>
               <MenuItem name="3">
-                <Icon type="ios-analytics"></Icon>
-                Item 2
-              </MenuItem>
-              <MenuItem name="4">
-                <Icon type="ios-paper"></Icon>
-                Item 3
+                <router-link to="/coinList">
+                  <Icon type="ios-analytics"></Icon>
+                  Item 3
+                </router-link>
               </MenuItem>
             </div>
           </Menu>
@@ -67,11 +65,26 @@ li {
   color: #2c3e50;
 }
 .layout{
+  position:relative;
+  min-height:100vh;
   border: 1px solid #d7dde4;
   background: #f5f7f9;
   position: relative;
   border-radius: 4px;
   overflow: hidden;
+  .ivu-layout-header {
+    background:#06214A;
+    height:62px;
+    .ivu-menu-light {
+      background:#06214A;
+      .ivu-menu-item {
+        padding:0;
+      }
+    }
+    .ivu-menu-horizontal.ivu-menu-light:after {
+      display:none;
+    }
+  }
 }
 .layout-logo{
   width: 100px;
@@ -88,10 +101,17 @@ li {
   margin: 0 auto;
   margin-right: 20px;
   a {
+    display:block;
+    width:100%;
+    padding:0 20px;
     color:inherit;
   }
 }
 .layout-footer-center{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
   text-align: center;
 }
 .contents {
