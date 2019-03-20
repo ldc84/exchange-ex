@@ -13,6 +13,7 @@ const vueConfig = {
       })(JsConfig.compilerOptions.paths),
     },
   },
+  baseUrl: process.env.NODE_ENV === 'production' ? '/exchange-ex/' : '/',
 };
 
 module.exports = vueConfig;
