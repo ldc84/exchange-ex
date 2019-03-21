@@ -19,9 +19,9 @@
                 </router-link>
               </MenuItem>
               <MenuItem name="3">
-                <router-link to="/coinList">
+                <router-link to="/trade/BTC/ETH">
                   <Icon type="ios-analytics"></Icon>
-                  Item 3
+                  Trade
                 </router-link>
               </MenuItem>
             </div>

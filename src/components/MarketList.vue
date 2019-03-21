@@ -1,7 +1,7 @@
 <template>
   <div class="market">
     <h1>Markets</h1>
-    <Spin fix v-if="$store.getters.symbols.KRW <= 0">
+    <Spin fix v-if="!$store.getters.symbols">
       <Icon type="ios-loading" size=50 class="demo-spin-icon-load"></Icon>
       <div>Loading...</div>
     </Spin>
@@ -18,7 +18,9 @@
               <transition name="trans" mode="out-in">
                 <div :key="tickers(coin.symbol_code).close" :class="[tickers(coin.symbol_code).open <= tickers(coin.symbol_code).close ? 'plus' : 'minus']">
                   <p class="coin">
-                    {{ coin.base_currency }}
+                    <router-link :to="`/trade/${coin.quote_currency.toUpperCase()}/${coin.base_currency.toUpperCase()}`">
+                      {{ coin.base_currency }}
+                    </router-link>
                   </p>
                   <p>
                     {{ pricePrecision(tickers(coin.symbol_code).close, coin.trade_price_precision) }}
