@@ -18,7 +18,7 @@
               <transition name="trans" mode="out-in">
                 <div :key="tickers(coin.symbol_code).close" :class="[tickers(coin.symbol_code).open <= tickers(coin.symbol_code).close ? 'plus' : 'minus']">
                   <p class="coin">
-                    <router-link :to="`/trade/${coin.quote_currency.toUpperCase()}/${coin.base_currency.toUpperCase()}`">
+                    <router-link :to="`/trade/${coin.symbol_code.toUpperCase()}`">
                       {{ coin.base_currency }}
                     </router-link>
                   </p>

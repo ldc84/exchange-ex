@@ -1,29 +1,20 @@
 <template>
   <div class="trade">
     <h1>Trade</h1>
-    <h2>{{ market }} 마켓</h2>
-    <h3>{{ coin }}</h3>
+    <h2>{{ symbol }}</h2>
   </div>
 </template>
 
 <script>
 
-const defaultMarket = 'BTC';
-const defaultCoin = 'ETH';
+const defaultSymbol = 'BTCETH';
 
 export default {
   data(){
     return {
-      market: this.$route.params.marketName || defaultMarket,
-      coin: this.$route.params.coinName || defaultCoin
+      symbol: this.$route.params.symbol || defaultMarket
     }
   },
-  created(){
-
-  },
-  methods: {
-    
-  }
 }
 </script>
 
